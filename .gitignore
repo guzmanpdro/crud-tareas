@@ -1,0 +1,4 @@
+venv/
+tareas.db
+*.pyc
+__pycache__/
