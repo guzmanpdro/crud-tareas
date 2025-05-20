@@ -6,6 +6,13 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tareas.db'
 db.init_app(app)
 
+with app.app_context():
+  try:
+    db.create_all()
+    print("Intentando crear las tablas de la base de datos al inicio de la aplicación (sin __main__).")
+  except Exception as e:
+    print(f"Error al intentar crear las tablas al inicio (sin __main__): {e}")
+
 # Ruta para obtener todas las tareas (READ)
 @app.route('/tareas', methods=['GET'])
 def obtener_tareas():
